@@ -1,0 +1,166 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/tests/tests.csproj": {}
+  },
+  "projects": {
+    "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/api/api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/api/api.csproj",
+        "projectName": "api",
+        "projectPath": "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/api/api.csproj",
+        "packagesPath": "/Users/linnevanspaendonk/.nuget/packages/",
+        "outputPath": "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/api/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/linnevanspaendonk/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Azure.Functions.Worker.Extensions.CosmosDB": {
+              "target": "Package",
+              "version": "[4.11.0, )"
+            },
+            "Microsoft.Azure.WebJobs.Extensions.CosmosDB": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            },
+            "Microsoft.NET.Sdk.Functions": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/tests/tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/tests/tests.csproj",
+        "projectName": "tests",
+        "projectPath": "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/tests/tests.csproj",
+        "packagesPath": "/Users/linnevanspaendonk/.nuget/packages/",
+        "outputPath": "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/linnevanspaendonk/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/api/api.csproj": {
+                "projectPath": "/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/backend/api/api.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.11.1, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

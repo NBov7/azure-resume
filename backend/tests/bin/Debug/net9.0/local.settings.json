@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_INPROC_NET8_ENABLED": "1",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AzureResumeConnectionString":"AccountEndpoint=https://azureresumecosmosnbov.documents.azure.com:443/;AccountKey=2FDYhRl6cGcxmA25lC4WErxVk679tdi9Zc23c4rDqk9t6ZwDsdNaFk2osx0PCFa1fA7VX68SqtOEACDb0D7Emw==;"
+  },
+  "Host":
+  {
+    "CORS": "*"
+  }
+}
