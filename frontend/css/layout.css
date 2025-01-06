@@ -33,7 +33,6 @@ header {
    height: 800px;
    min-height: 500px;
    width: 100%;
-   background: #161415 no-repeat top center;
    background-image: url(/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/frontend/images/header-bg-3000.jpg);
    background-size: cover !important;
 	-webkit-background-size: cover !important;
