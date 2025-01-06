@@ -36,6 +36,7 @@ header {
    background: #161415 no-repeat top center;
    background-size: cover !important;
 	-webkit-background-size: cover !important;
+   background-image: url(/Users/linnevanspaendonk/Documents/ProjectNiels/azure-resume/frontend/images/header-bg-3000.jpg)
    text-align: center;
    overflow: hidden;
 }
