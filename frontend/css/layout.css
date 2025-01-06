@@ -282,6 +282,7 @@ ul#nav li.current a { color: #F06000; }
 }
 #resume .inside {
    font: 15px/24px 'opensans-regular', sans-serif;
+   list-style-type: disc;
    margin-top: 6px;
    margin-left: 45px;
 }
