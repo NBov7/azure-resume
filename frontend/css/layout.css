@@ -30,7 +30,6 @@ body { background: #0f0f0f; }
 
 header {
    position: relative;
-   height: 800px;
    min-height: 500px;
    width: 100%;
    background: #161415 url(../images/header-bg-3000.jpg) no-repeat top center;
