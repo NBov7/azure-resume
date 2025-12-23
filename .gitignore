@@ -1,0 +1,5 @@
+
+# local logs
+backend/api/logs/
+logs/
+*.zip
