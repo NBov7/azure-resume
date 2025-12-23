@@ -21,7 +21,7 @@ namespace Company.Function
 
         [Function("GetResumeCounter")]
         public async Task<HttpResponseData> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequestData req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestData req)
         {
             _log.LogInformation("GetResumeCounter triggered.");
 
@@ -49,6 +49,8 @@ namespace Company.Function
             var res = req.CreateResponse(HttpStatusCode.OK);
             res.Headers.Add("Content-Type", "application/json");
             await res.WriteStringAsync(JsonConvert.SerializeObject(item));
+            res.Headers.Add("Access-Control-Allow-Origin", "*");
+            res.Headers.Add("Cache-Control", "no-store");
 
             return res;
         }
