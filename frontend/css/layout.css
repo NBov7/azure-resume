@@ -1042,3 +1042,20 @@ header .banner-text p.meta{
    line-height: 1.6;
  }
  
+/* Certifications styling only */
+#resume .certs h3{
+   font-size: 18px;
+   line-height: 1.35;
+   font-family: 'opensans-semibold', sans-serif;
+   margin-bottom: 6px;
+ }
+ 
+ #resume .certs .info{
+   margin-top: 4px;
+   margin-bottom: 12px;
+ }
+ 
+ #resume .certs .row.item{
+   margin-bottom: 10px;
+ }
+ 
