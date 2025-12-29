@@ -33,11 +33,12 @@ jobs:
       - name: Upload static site to $web
         run: |
           az storage blob upload-batch \
-            --account-name "${{ env.STORAGE_ACCOUNT }}" \
-            --destination '$web' \
-            --source "frontend" \
-            --overwrite true
-
+           --auth-mode login \
+           --account-name "${{ env.STORAGE_ACCOUNT }}" \
+           --destination '$web' \
+           --source "frontend" \
+           --overwrite true
+     
       - name: Smoke test
         run: |
           curl -fsS https://resume.nielsbovre.com > /dev/null
