@@ -1010,3 +1010,16 @@ footer .social-links li:first-child { margin-left: 0; }
 }
 #go-top a:hover { background-color: #0F9095; }
 
+header .banner-text p.meta { opacity: 0.9; }
+header .banner-text #counter { font-weight: 700; }
+
+#resume .row.item .twelve.columns{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+
+#resume ul { margin: 10px 0 0 18px; }
+#resume li { margin: 6px 0; }
+
