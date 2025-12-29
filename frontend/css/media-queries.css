@@ -372,6 +372,49 @@
 
 }
 
+@media only screen and (max-width: 767px) {
+
+   /* Resume: make content scannable again */
+   #resume h3,
+   #resume .info {
+     text-align: left;
+   }
+ 
+   #resume .row.item .twelve.columns{
+     text-align: left;
+     padding: 14px 14px;
+   }
+ 
+   #resume ul{
+     margin-left: 18px;
+   }
+
+   /* About: show profile picture on mobile */
+  #about .profile-pic {
+   display: block;
+   margin: 0 auto 18px auto;
+ }
+
+ #about .three.columns {
+   text-align: center;
+ }
+
+ @media only screen and (max-width: 480px) {
+   header .banner-text p.meta{
+     font-size: 16px;
+     line-height: 1.6;
+     width: 92%;
+     margin: 10px auto 0 auto;
+   }
+ }
+ @media only screen and (max-width: 767px) {
+   #nav-wrap > a{
+     background-color: #11ABB0;
+   }
+ }
+ 
+ }
+ 
 
 
 
