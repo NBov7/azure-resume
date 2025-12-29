@@ -1,58 +1,70 @@
-name: Deploy Backend Function
+name: Backend - Deploy Azure Function
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
     paths:
       - "backend/**"
       - ".github/workflows/backend.yml"
+  workflow_dispatch:
 
 permissions:
   id-token: write
   contents: read
 
 env:
-  WORKDIR: backend
-  FUNCTIONAPP_NAME: nbov-resume-func-iso-960
-  RG: rg-azure-resume-weu
+  DOTNET_VERSION: "8.0.x"
+  FUNCTIONAPP_NAME: "nbov-resume-func-iso-960"
+  RESOURCE_GROUP: "rg-azure-resume-weu"
+  PROJECT_PATH: "backend/api/api.csproj"
+  PUBLISH_DIR: "publish"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-dotnet@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
+      # Restore/build vanuit de solution is ok, maar publish moet op de csproj
       - name: Restore
-        working-directory: ${{ env.WORKDIR }}
-        run: dotnet restore
+        run: dotnet restore ./azure-resume.sln
 
       - name: Build
-        working-directory: ${{ env.WORKDIR }}
-        run: dotnet build -c Release --no-restore
+        run: dotnet build ./azure-resume.sln -c Release --no-restore
 
-      - name: Publish
-        working-directory: ${{ env.WORKDIR }}
-        run: dotnet publish -c Release -o publish
+      - name: Publish Function App
+        run: dotnet publish ./${{ env.PROJECT_PATH }} -c Release -o ./${{ env.PUBLISH_DIR }}
 
-      - name: Zip
+      - name: Create deployment zip
         run: |
-          cd "${{ env.WORKDIR }}/publish"
+          cd ${{ env.PUBLISH_DIR }}
           zip -r ../function.zip .
+          cd ..
 
       - name: Azure Login (OIDC)
         uses: azure/login@v2
         with:
-          client-id: ${{ vars.AZURE_CLIENT_ID }}
-          tenant-id: ${{ vars.AZURE_TENANT_ID }}
-          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Deploy (zip)
+      # Deploy via zip (werkt goed voor Functions)
+      - name: Deploy zip to Azure Function
         run: |
           az functionapp deployment source config-zip \
-            -g "${{ env.RG }}" \
+            -g "${{ env.RESOURCE_GROUP }}" \
             -n "${{ env.FUNCTIONAPP_NAME }}" \
-            --src "${{ env.WORKDIR }}/function.zip"
+            --src function.zip
+
+      # Smoke test (pas pad aan als je function route anders heet)
+      - name: Smoke test endpoint
+        run: |
+          curl -sS -D- "https://${{ env.FUNCTIONAPP_NAME }}.azurewebsites.net/api/GetResumeCounter" -o /dev/null
+
