@@ -1,22 +1,27 @@
-window.addEventListener('DOMContentLoaded', () => {
-    getVisitCount();
-});
-
-const functionApiUrl = '/api/GetResumeCounter';
-
-const getVisitCount = () => {
-    let count = 0;
-
-    fetch(functionApiUrl)
-        .then(response => response.json())
-        .then(response => {
-            console.log("Website called function API.");
-            count = response.count;
-            document.getElementById("counter").innerText = count;
-        })
-        .catch(error => {
-            console.error("Error fetching visit count:", error);
-        });
-
-    return count;
-};
+document.addEventListener("DOMContentLoaded", () => {
+    getVisitCount().catch(console.error);
+  });
+  
+  const functionApiUrl = "/api/GetResumeCounter";
+  
+  async function getVisitCount() {
+    const el = document.getElementById("counter");
+    if (!el) return;
+  
+    // Optional: avoid re-calling on every hard refresh navigation within session
+    const cached = sessionStorage.getItem("resumeCounter");
+    if (cached) {
+      el.textContent = cached;
+      return;
+    }
+  
+    const res = await fetch(functionApiUrl, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Counter API failed: ${res.status}`);
+  
+    const data = await res.json();
+    const count = Number(data?.count ?? 0).toLocaleString("en-US");
+  
+    el.textContent = count;
+    sessionStorage.setItem("resumeCounter", count);
+  }
+  
