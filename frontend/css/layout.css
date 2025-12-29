@@ -30,8 +30,8 @@ body { background: #0f0f0f; }
 
 header {
    position: relative;
-   height: 800px;
-   min-height: 500px;
+   height: 85vh;
+   min-height: 520px;
    width: 100%;
    background: #161415 url('../images/header-background.jpg') no-repeat top center;
    background-size: cover !important;
@@ -201,10 +201,12 @@ ul#nav li.current a { color: #F06000; }
    color: #fff;
    margin-bottom: 12px;
 }
-#about p {
-   line-height: 30px;
-   color: #7A7A7A;
-}
+#about p{
+   color: #c9c9c9;
+   line-height: 1.7;
+   max-width: 60ch;
+ }
+
 #about .profile-pic {
    position: relative;
    width: 120px;
@@ -1010,16 +1012,33 @@ footer .social-links li:first-child { margin-left: 0; }
 }
 #go-top a:hover { background-color: #0F9095; }
 
-header .banner-text p.meta { opacity: 0.9; }
-header .banner-text #counter { font-weight: 700; }
+header .banner-text p.meta{
+   opacity: 0.9;
+   font-size: 18px;
+   margin-top: 10px;
+ }
+ header .banner-text #counter{
+   font-weight: 800;
+   color: #11ABB0;
+ }
+ 
 
 #resume .row.item .twelve.columns{
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  padding: 16px 18px;
-}
+   background: #f7f7f7;
+   border: 1px solid #e8e8e8;
+   border-radius: 14px;
+   padding: 16px 18px;
+ }
+ #resume .row.item .twelve.columns:hover{
+   border-color: #cfd8dc;
+ }
 
-#resume ul { margin: 10px 0 0 18px; }
-#resume li { margin: 6px 0; }
-
+ #resume ul{
+   margin: 10px 0 0 18px;
+   padding: 0;
+ }
+ #resume li{
+   margin: 6px 0;
+   line-height: 1.6;
+ }
+ 
