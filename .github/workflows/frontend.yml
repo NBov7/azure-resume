@@ -1,0 +1,50 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/frontend.yml"
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  WORKDIR: frontend
+  BUILD_DIR: dist
+  STORAGE_ACCOUNT: nbovresumeweb960
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install
+        working-directory: ${{ env.WORKDIR }}
+        run: npm ci
+
+      - name: Build
+        working-directory: ${{ env.WORKDIR }}
+        run: npm run build
+
+      - name: Azure Login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Upload to Storage static website ($web)
+        run: |
+          az storage blob upload-batch \
+            --account-name "${{ env.STORAGE_ACCOUNT }}" \
+            --destination '$web' \
+            --source "${{ env.WORKDIR }}/${{ env.BUILD_DIR }}" \
+            --overwrite true

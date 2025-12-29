@@ -1,0 +1,58 @@
+name: Deploy Backend Function
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend.yml"
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  WORKDIR: backend
+  FUNCTIONAPP_NAME: nbov-resume-func-iso-960
+  RG: rg-azure-resume-weu
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore
+        working-directory: ${{ env.WORKDIR }}
+        run: dotnet restore
+
+      - name: Build
+        working-directory: ${{ env.WORKDIR }}
+        run: dotnet build -c Release --no-restore
+
+      - name: Publish
+        working-directory: ${{ env.WORKDIR }}
+        run: dotnet publish -c Release -o publish
+
+      - name: Zip
+        run: |
+          cd "${{ env.WORKDIR }}/publish"
+          zip -r ../function.zip .
+
+      - name: Azure Login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy (zip)
+        run: |
+          az functionapp deployment source config-zip \
+            -g "${{ env.RG }}" \
+            -n "${{ env.FUNCTIONAPP_NAME }}" \
+            --src "${{ env.WORKDIR }}/function.zip"
