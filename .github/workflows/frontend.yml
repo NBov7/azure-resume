@@ -1,4 +1,4 @@
-name: Deploy Frontend
+name: Deploy Frontend (Static)
 
 on:
   push:
@@ -6,33 +6,22 @@ on:
     paths:
       - "frontend/**"
       - ".github/workflows/frontend.yml"
+  workflow_dispatch:
 
 permissions:
   id-token: write
   contents: read
 
 env:
-  WORKDIR: frontend
-  BUILD_DIR: dist
   STORAGE_ACCOUNT: nbovresumeweb960
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install
-        working-directory: ${{ env.WORKDIR }}
-        run: npm ci
-
-      - name: Build
-        working-directory: ${{ env.WORKDIR }}
-        run: npm run build
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Azure Login (OIDC)
         uses: azure/login@v2
@@ -41,10 +30,16 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Upload to Storage static website ($web)
+      - name: Upload static site to $web
         run: |
           az storage blob upload-batch \
             --account-name "${{ env.STORAGE_ACCOUNT }}" \
             --destination '$web' \
-            --source "${{ env.WORKDIR }}/${{ env.BUILD_DIR }}" \
+            --source "frontend" \
             --overwrite true
+
+      - name: Smoke test
+        run: |
+          curl -fsS https://resume.nielsbovre.com > /dev/null
+
+
