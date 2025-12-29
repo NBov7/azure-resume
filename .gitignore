@@ -3,3 +3,4 @@
 backend/api/logs/
 logs/
 *.zip
+publish/
