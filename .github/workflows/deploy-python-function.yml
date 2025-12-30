@@ -1,10 +1,11 @@
 name: Deploy Python Function
 
 on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - "backend-python/**"
+    push:
+      branches: [ "main" ]
+      paths:
+        - "backend-python/**"
+        - ".github/workflows/deploy-python-function.yml"
 
 jobs:
   deploy:
