@@ -1059,3 +1059,33 @@ header .banner-text p.meta{
    margin-bottom: 10px;
  }
  
+ /* Work Experience spacing */
+#resume .work .row.item {
+   margin-bottom: 28px; /* ruimte tussen jobs */
+ }
+ 
+ #resume .work .row.item:last-child {
+   margin-bottom: 0;
+ }
+ 
+ /* Work Experience cards – internal spacing */
+ #resume .work .row.item .twelve.columns {
+   padding: 20px 22px; /* lucht binnen de card */
+ }
+
+ /* Work Experience task bullets */
+#resume .work ul {
+   list-style: disc;
+   padding-left: 20px;
+   margin-top: 12px;
+ }
+ 
+ #resume .work li {
+   margin: 6px 0;
+ }
+ 
+ #resume .work ul li::marker {
+   color: #11ABB0;       /* accentkleur */
+   font-size: 0.9em;     /* subtiel */
+ }
+ 

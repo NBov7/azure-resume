@@ -413,6 +413,16 @@
    }
  }
  
+ @media only screen and (max-width: 767px) {
+   #resume .work .row.item {
+     margin-bottom: 18px;
+   }
+ 
+   #resume .work .row.item .twelve.columns {
+     padding: 16px 16px;
+   }
+ }
+  
  }
  
 
