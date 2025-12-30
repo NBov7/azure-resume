@@ -1074,4 +1074,47 @@ header .banner-text p.meta{
   margin-bottom: 0;
 }
 
+ /* Force cards to align exactly the same width in all resume sections */
+#resume .main-col .row.item .twelve.columns{
+   width: 100%;
+   margin-left: 0;
+   margin-right: 0;
+   float: none;          /* kills weird float/offset behavior */
+   clear: both;
+   box-sizing: border-box;
+ }
+ #resume .certs .row.item{
+   margin-bottom: 28px; /* match work spacing */
+ }
+ #resume .certs .row.item:last-child{
+   margin-bottom: 0;
+ }
+/* Skills card: nicer internal spacing */
+#resume .skills .twelve.columns h4{
+   margin-top: 18px;
+   margin-bottom: 8px;
+   font-size: 16px;
+   font-family: 'opensans-semibold', sans-serif;
+ }
+ 
+ #resume .skills .twelve.columns h4:first-child{
+   margin-top: 0;
+ }
+ 
+ #resume .skills .twelve.columns ul{
+   margin: 0 0 14px 18px;
+   padding: 0;
+ }
+ 
+ #resume .skills .twelve.columns ul:last-child{
+   margin-bottom: 0;
+ }
+ #resume .skills .twelve.columns h4{
+   padding-top: 16px;
+   border-top: 1px solid rgba(0,0,0,.06);
+ }
+ #resume .skills .twelve.columns h4:first-child{
+   border-top: 0;
+   padding-top: 0;
+ }
  
