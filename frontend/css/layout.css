@@ -1117,4 +1117,12 @@ header .banner-text p.meta{
    border-top: 0;
    padding-top: 0;
  }
+ /* Certifications spacing – match Work Experience */
+#resume .certs .row.item {
+   margin-bottom: 28px;
+ }
+ 
+ #resume .certs .row.item:last-child {
+   margin-bottom: 0;
+ }
  
