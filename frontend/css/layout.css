@@ -1024,58 +1024,54 @@ header .banner-text p.meta{
  }
  
 
-/* ---- Cards only where we want them ---- */
+/* ===== Resume: unified cards (Work + Certifications + Education + Skills) ===== */
 
-/* Reset: no cards by default */
-#resume .row.item .twelve.columns{
-   background: transparent;
-   border: 0;
-   border-radius: 0;
-   padding: 0;
-   box-sizing: border-box;
- }
- 
- /* Work Experience: cards + spacing */
- #resume .work .row.item{
-   margin-bottom: 28px;
- }
- #resume .work .row.item:last-child{
-   margin-bottom: 0;
- }
- 
- #resume .work .row.item .twelve.columns{
-   background: #f7f7f7;
-   border: 1px solid #e8e8e8;
-   border-radius: 14px;
-   padding: 20px 22px;
- }
- #resume .work .row.item .twelve.columns:hover{
-   border-color: #cfd8dc;
- }
- 
- /* Certifications: compact, aligned */
- #resume .certs .row.item{
-   margin-bottom: 10px;
- }
- #resume .certs .row.item .twelve.columns{
-   background: transparent;
-   border: 0;
-   padding: 0;
-   border-radius: 0;
- }
- 
- /* Work Experience task bullets */
- #resume .work ul{
-   list-style: disc;
-   padding-left: 20px;
-   margin-top: 12px;
- }
- #resume .work li{
-   margin: 6px 0;
-   line-height: 1.6;
- }
- #resume .work ul li::marker{
-   color: #11ABB0;
-   font-size: 0.9em;
- } 
+/* Make sure padding/border never break the grid width */
+#resume .twelve.columns { box-sizing: border-box; }
+
+/* Card look (applies to each resume item) */
+#resume .work .row.item .twelve.columns,
+#resume .certs .row.item .twelve.columns,
+#resume .education .row.item .twelve.columns,
+#resume .skills .row.item .twelve.columns{
+  background: #f7f7f7;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 20px 22px;
+}
+
+#resume .work .row.item .twelve.columns:hover,
+#resume .certs .row.item .twelve.columns:hover,
+#resume .education .row.item .twelve.columns:hover,
+#resume .skills .row.item .twelve.columns:hover{
+  border-color: #cfd8dc;
+}
+
+/* Consistent spacing between cards */
+#resume .work .row.item,
+#resume .certs .row.item,
+#resume .education .row.item,
+#resume .skills .row.item{
+  margin-bottom: 18px;
+}
+
+#resume .work .row.item:last-child,
+#resume .certs .row.item:last-child,
+#resume .education .row.item:last-child,
+#resume .skills .row.item:last-child{
+  margin-bottom: 0;
+}
+
+/* Typography: keep certifications less “shouty” inside cards */
+#resume .certs h3{
+  font-size: 18px;
+  line-height: 1.35;
+  font-family: 'opensans-semibold', sans-serif;
+  margin-bottom: 6px;
+}
+#resume .certs .info{
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
  
