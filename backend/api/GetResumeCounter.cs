@@ -48,7 +48,14 @@ namespace Company.Function
 
             var res = req.CreateResponse(HttpStatusCode.OK);
             res.Headers.Add("Content-Type", "application/json");
-            await res.WriteStringAsync(JsonConvert.SerializeObject(item));
+            var payload = new
+            {
+                count = item.Count,
+                source = "legacy"
+            };
+
+            await res.WriteStringAsync(JsonConvert.SerializeObject(payload));
+
             res.Headers.Add("Access-Control-Allow-Origin", "*");
             res.Headers.Add("Cache-Control", "no-store");
 
