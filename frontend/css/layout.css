@@ -844,7 +844,6 @@ call-to-action .button {
    font: 15px/24px 'opensans-bold', sans-serif;
    margin: 12px 0;
    color: #EBEEEE;
-	display: inline-block;
 	float: left;
    width: 26%;
 }
