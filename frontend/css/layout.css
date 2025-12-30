@@ -1024,69 +1024,58 @@ header .banner-text p.meta{
  }
  
 
-#resume .row.item .twelve.columns{
-   background: #f7f7f7;
-   border: 1px solid #e8e8e8;
-   border-radius: 14px;
-   padding: 16px 18px;
- }
- #resume .row.item .twelve.columns:hover{
-   border-color: #cfd8dc;
- }
+/* ---- Cards only where we want them ---- */
 
- #resume ul{
-   margin: 10px 0 0 18px;
+/* Reset: no cards by default */
+#resume .row.item .twelve.columns{
+   background: transparent;
+   border: 0;
+   border-radius: 0;
    padding: 0;
- }
- #resume li{
-   margin: 6px 0;
-   line-height: 1.6;
+   box-sizing: border-box;
  }
  
-/* Certifications styling only */
-#resume .certs h3{
-   font-size: 18px;
-   line-height: 1.35;
-   font-family: 'opensans-semibold', sans-serif;
-   margin-bottom: 6px;
+ /* Work Experience: cards + spacing */
+ #resume .work .row.item{
+   margin-bottom: 28px;
  }
- 
- #resume .certs .info{
-   margin-top: 4px;
-   margin-bottom: 12px;
- }
- 
- #resume .certs .row.item{
-   margin-bottom: 10px;
- }
- 
- /* Work Experience spacing */
-#resume .work .row.item {
-   margin-bottom: 28px; /* ruimte tussen jobs */
- }
- 
- #resume .work .row.item:last-child {
+ #resume .work .row.item:last-child{
    margin-bottom: 0;
  }
  
- /* Work Experience cards – internal spacing */
- #resume .work .row.item .twelve.columns {
-   padding: 20px 22px; /* lucht binnen de card */
+ #resume .work .row.item .twelve.columns{
+   background: #f7f7f7;
+   border: 1px solid #e8e8e8;
+   border-radius: 14px;
+   padding: 20px 22px;
  }
-
+ #resume .work .row.item .twelve.columns:hover{
+   border-color: #cfd8dc;
+ }
+ 
+ /* Certifications: compact, aligned */
+ #resume .certs .row.item{
+   margin-bottom: 10px;
+ }
+ #resume .certs .row.item .twelve.columns{
+   background: transparent;
+   border: 0;
+   padding: 0;
+   border-radius: 0;
+ }
+ 
  /* Work Experience task bullets */
-#resume .work ul {
+ #resume .work ul{
    list-style: disc;
    padding-left: 20px;
    margin-top: 12px;
  }
- 
- #resume .work li {
+ #resume .work li{
    margin: 6px 0;
+   line-height: 1.6;
  }
- 
- #resume .work ul li::marker {
-   color: #11ABB0;       /* accentkleur */
-   font-size: 0.9em;     /* subtiel */
- }
+ #resume .work ul li::marker{
+   color: #11ABB0;
+   font-size: 0.9em;
+ } 
  
