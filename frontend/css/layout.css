@@ -1103,4 +1103,36 @@ header .banner-text p.meta{
    padding-top: 0;
  }
 
+ /* ===== Restore bullets for Work Experience & Skills ===== */
+
+/* Work Experience bullets */
+#resume .work ul {
+   list-style: disc;
+   padding-left: 20px;
+   margin-top: 12px;
+ }
+ 
+ #resume .work li {
+   margin: 6px 0;
+   line-height: 1.6;
+ }
+ 
+ /* Skills bullets */
+ #resume .skills ul {
+   list-style: disc;
+   padding-left: 20px;
+   margin-top: 10px;
+ }
+ 
+ #resume .skills li {
+   margin: 6px 0;
+   line-height: 1.6;
+ }
+ 
+ /* Accent color for bullets (optional but nice) */
+ #resume .work ul li::marker,
+ #resume .skills ul li::marker {
+   color: #11ABB0;
+   font-size: 0.9em;
+ }
  
