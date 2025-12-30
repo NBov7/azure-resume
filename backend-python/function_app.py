@@ -16,7 +16,11 @@ def _env(name: str, default: str | None = None) -> str:
 
 @app.route(route="health", methods=["GET"])
 def health(req: func.HttpRequest) -> func.HttpResponse:
-    return func.HttpResponse("ok", status_code=200)
+    return func.HttpResponse(
+        json.dumps({"status": "ok", "source": "python"}),
+        status_code=200,
+        mimetype="application/json"
+    )
 
 @app.route(route="GetResumeCounter", methods=["GET"])
 def get_resume_counter(req: func.HttpRequest) -> func.HttpResponse:
@@ -40,7 +44,7 @@ def get_resume_counter(req: func.HttpRequest) -> func.HttpResponse:
         )
 
         return func.HttpResponse(
-            json.dumps({"status": "ok", "source": "python"}),
+            json.dumps({"count": updated["count"], "source": "python"}),
             status_code=200,
             mimetype="application/json"
         )
