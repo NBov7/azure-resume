@@ -40,9 +40,12 @@ def get_resume_counter(req: func.HttpRequest) -> func.HttpResponse:
         )
 
         return func.HttpResponse(
-            body=json.dumps({"count": int(updated["count"])}),
-            status_code=200,
-            mimetype="application/json"
+            json.dumps({
+                "count": int(updated["count"]),
+                "source": "python"
+            }),
+            mimetype="application/json",
+            status_code=200
         )
 
     except Exception:
