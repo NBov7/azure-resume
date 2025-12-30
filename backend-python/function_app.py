@@ -32,42 +32,23 @@ def get_resume_counter(req: func.HttpRequest) -> func.HttpResponse:
     client = CosmosClient(endpoint, credential=key)
     container = client.get_database_client(db_name).get_container_client(container_name)
 
-    for attempt in range(1, 6):
-        try:
-            item = container.read_item(item=item_id, partition_key=pk)
-            item["count"] = int(item.get("count", 0)) + 1
+    try:
+        updated = container.patch_item(
+            item=item_id,
+            partition_key=pk,
+            patch_operations=[{"op": "incr", "path": "/count", "value": 1}],
+        )
 
-            etag = item.get("_etag")
-            if etag:
-                updated = container.replace_item(
-                    item=item_id,
-                    body=item,
-                    etag=etag,
-                    match_condition="IfMatch"
-                )
-            else:
-                updated = container.replace_item(item=item_id, body=item)
+        return func.HttpResponse(
+            body=json.dumps({"count": int(updated["count"])}),
+            status_code=200,
+            mimetype="application/json"
+        )
 
-            return func.HttpResponse(
-                body=json.dumps({"count": int(updated["count"])}),
-                status_code=200,
-                mimetype="application/json"
-            )
-
-        except CosmosHttpResponseError as e:
-            if getattr(e, "status_code", None) == 412 and attempt < 5:
-                logging.warning("ETag conflict, retrying... attempt=%s", attempt)
-                continue
-            logging.exception("Cosmos error")
-            return func.HttpResponse(
-                body=json.dumps({"error": "cosmos_error"}),
-                status_code=500,
-                mimetype="application/json"
-            )
-        except Exception:
-            logging.exception("Unhandled error")
-            return func.HttpResponse(
-                body=json.dumps({"error": "server_error"}),
-                status_code=500,
-                mimetype="application/json"
-            )
+    except Exception:
+        logging.exception("Counter update failed")
+        return func.HttpResponse(
+            body=json.dumps({"error": "server_error"}),
+            status_code=500,
+            mimetype="application/json"
+        )
