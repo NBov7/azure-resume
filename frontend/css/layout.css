@@ -1119,7 +1119,7 @@ header .banner-text p.meta{
  }
  /* Certifications spacing – match Work Experience */
 #resume .certs .row.item {
-   margin-bottom: 28px;
+   margin-bottom: 24px;
  }
  
  #resume .certs .row.item:last-child {
